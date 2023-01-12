@@ -1,7 +1,7 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ref, onValue, set } from "firebase/database";
-import { Text, View } from 'react-native';
-import FriendsOutput from '../components/FriendsOutput/FriendsOutput';
+import { View } from 'react-native';
+
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import { database } from '../firebaseConfig';
 import FriendsList from '../components/FriendsOutput/FriendsList';
