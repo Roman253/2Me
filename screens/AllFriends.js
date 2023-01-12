@@ -4,6 +4,7 @@ import { Text, View } from 'react-native';
 import FriendsOutput from '../components/FriendsOutput/FriendsOutput';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import { database } from '../firebaseConfig';
+import FriendsList from '../components/FriendsOutput/FriendsList';
 
 
 function AllFriends() {
@@ -27,7 +28,7 @@ function AllFriends() {
 
   return (
   <View>    
-    <FriendsOutput friends={friends}/>
+    <FriendsList friends={friends}/>
   </View>
   );
 }

@@ -18,21 +18,12 @@ function FriendsList ({ friends, route, navigation }) {
 
     const navigations = useNavigation();
 
-    //const friendId = route.params.friendId;
-/*
-    const buttonClickedHandler = () => {
-        console.log('You have been clicked a button!');
-        // do something
-      };
-*/
-
     function FriendsPressHandler(){
         navigations.navigate('AddFriend', { });
     }
     const ListFooter = () => {
         return (
                 <Pressable
-                    //onPress={confirmHandler}
                     onPress={FriendsPressHandler}
                     style={({pressed}) => pressed && styles.pressed}
                 >

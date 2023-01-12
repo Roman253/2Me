@@ -1,3 +1,4 @@
 node_modules
 .expo
 firebaseConfig.js
+git add . && git commit -m "initial commit"
