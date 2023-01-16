@@ -1,8 +1,16 @@
+import { useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
 
+import { getUserToken } from '../util/auth';
 import CountDown from 'react-native-countdown-component';
+import { AuthContext } from '../store/auth-context';
 
-function WelcomeScreen() {
+async function WelcomeScreen() {
+
+  const authCtx = useContext(AuthContext);
+  const token = authCtx.token;
+  
+  await getUserToken(user.id, userData);
 
   const buttonClickedHandler = () => {
     console.log('You have been clicked a button!');
