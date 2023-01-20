@@ -5,7 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import AppLoading from 'expo-app-Loading';
+import AppLoading from 'expo-app-loading';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -36,9 +36,9 @@ function AuthStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: Colors.primary500 },
+        headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
         headerTintColor: 'white',
-        contentStyle: { backgroundColor: Colors.primary100 },
+        contentStyle: { backgroundColor: GlobalStyles.colors.primary100 },
       }}
     >
       <Stack.Screen name="Login" component={LoginScreen} />
