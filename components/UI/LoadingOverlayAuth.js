@@ -9,7 +9,7 @@ function LoadingOverlayAuth({ message }) {
   );
 }
 
-export default LoadingOverlay;
+export default LoadingOverlayAuth;
 
 const styles = StyleSheet.create({
   rootContainer: {
