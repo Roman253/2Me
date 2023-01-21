@@ -6,7 +6,7 @@ import { GlobalStyles } from '../constants/style';
 import { useState } from 'react';
 import Button from '../components/UI/Button';
 import { FriendsContext } from '../store/friends-context';
-import { storeFriend } from '../util/database';
+import { storeFriend } from '../utils/database';
 
   
     function confirmHandler (){

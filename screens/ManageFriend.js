@@ -5,7 +5,7 @@ import { GlobalStyles } from '../constants/style';
 import Button from '../components/UI/Button';
 import { useContext, useEffect, useLayoutEffect } from 'react';
 import { FriendsContext } from '../store/friends-context';
-import { deleteFriend, getFriends } from '../util/database';
+import { deleteFriend, getFriends } from '../utils/database';
 
 function ManageFriend({route, navigation}) {
     const friendCtx = useContext(FriendsContext);

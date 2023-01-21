@@ -1,12 +1,17 @@
 import {View, StyleSheet, Text, alert, Alert} from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GlobalStyles } from '../../constants/style';
 
 import Input from './Input';
 import Button from '../UI/Button';
 
 function UserForm (props, navigation){
-    const [inputValues, setInputValues] = useState(props.defaultValues);
+    const [inputValues, setInputValues] = useState({});
+
+    useEffect(() => {
+        setInputValues(props.defaultValues)
+    }, [props])
+    
 
     function inputChangeHandler (inputIdentifier, enteredValue) {
         setInputValues((curInputValues)=>{
@@ -20,7 +25,6 @@ function UserForm (props, navigation){
     function submitHandler (){
         const userData = {
             user: inputValues.user,
-            password: inputValues.password,
             email: inputValues.email
         };
 
@@ -30,7 +34,7 @@ function UserForm (props, navigation){
 
     return (
         <View style={styles.form}>
-            <Text style={styles.title}>Personal Data</Text>
+            <Text style={styles.title}>Personal Data: {props.defaultValues.email}</Text>
             <Input 
                 label="User Name" 
                 textInputConfig={{
@@ -38,13 +42,7 @@ function UserForm (props, navigation){
                     value: inputValues.user,
                 }}
             />
-            <Input 
-                label="Password"
-                textInputConfig={{
-                    onChangeText: inputChangeHandler.bind(this, 'password'),
-                    value: inputValues.password,
-                }}
-            />
+            
             <Input 
                 label="E-mail"
                 textInputConfig={{
