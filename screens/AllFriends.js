@@ -3,7 +3,7 @@ import { ref, onValue, set } from "firebase/database";
 import { View } from 'react-native';
 
 import LoadingOverlay from '../components/UI/LoadingOverlay';
-import { database } from '../firebaseConfig';
+import { database } from '../config/firebaseConfig';
 import FriendsList from '../components/FriendsOutput/FriendsList';
 
 

@@ -12,14 +12,14 @@ const DUMMY_USER =
 export const userContext = createContext({
     userData: '',
     deleteUser: (id) => {},
-    updateUser: (id, {user, email, password}) => {}
+    updateUser: (id, {user, email, password}) => {},
+    setUser: (data) => data
 });
 
 function MeReducer(state,action){
     switch(action.type) {
-        //case 'ADD': 
-        //const id = new Date().toString() + Math.random().toString();
-        //return [{ ...action.payload, id:id }, ...state];
+        case 'SET': 
+            return [{ ...action.payload }, ...state];
         case'UPDATE': 
             return action.payload.data;
         case 'DELETE':
@@ -32,9 +32,9 @@ function MeReducer(state,action){
 function UserContextProvider({children}) {
     const [MeState, dispatch]= useReducer(MeReducer, DUMMY_USER ); 
 
-   // function addFriend(friendData) {
-    //    dispatch({type: 'ADD', payload: friendData });
-   // }
+    function setUser(user){
+        dispatch({type: 'SET', payload:user });
+    }
 
     function deleteUser(id){
         dispatch({type: 'DELETE', payload:id });
@@ -46,7 +46,7 @@ function UserContextProvider({children}) {
 
     const value = {
         userData: MeState,
-        //addMe: addMe,
+        setUser: setUser,
         deleteUser: deleteUser,
         updateUser: updateUser
     };

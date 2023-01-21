@@ -1,5 +1,5 @@
 import { ref, set, get } from "firebase/database";
-import { database } from '../firebaseConfig';
+import { database } from '../config/firebaseConfig';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 
