@@ -129,7 +129,7 @@ function Home() {
         ),
       }}
     />
-    <Drawer.Screen 
+   {/* <Drawer.Screen 
       name="About"
       component={AboutScreen}
       options={{
@@ -146,7 +146,7 @@ function Home() {
          <Ionicons name="md-mail" color={color} size={size} />
         ),
       }}
-    />
+    />*/}
   </Drawer.Navigator>);
 }
 

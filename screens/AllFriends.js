@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ref, onValue, set } from "firebase/database";
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import { database } from '../config/firebaseConfig';

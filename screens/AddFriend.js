@@ -8,12 +8,6 @@ import Button from '../components/UI/Button';
 import { FriendsContext } from '../store/friends-context';
 import { storeFriend } from '../utils/database';
 
-  
-    function confirmHandler (){
-      //  navigation.goBack();
-    
-    }
-
 function AddFriend ({ route, navigation}) {
     const [inputValues, setInputValues] = useState({
         userName: '',
@@ -40,12 +34,12 @@ function AddFriend ({ route, navigation}) {
             const userIsValid = inputValues.userName.trim().length>0;
 
             if (!userIsValid ){
-                Alert.alert('User is empty','Fill user field');
+                Alert.alert('Friend is empty','Fill friend field');
                 return; 
             }
             
             const id = await storeFriend({user: inputValues.userName});
-            friendCtx.addFriend({user: inputValues.userName, id:id});
+            //friendCtx.addFriend({user: inputValues.userName, id:id});
             navigation.goBack();
         };
 
