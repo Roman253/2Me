@@ -11,61 +11,57 @@ import { useAuthentication } from '../utils/hooks/useAuthentication';
 function WelcomeScreen() {
   const [currentUser, setCurrentUser] = useState(null)
   const {user} = useAuthentication()
+
   useEffect(() => {
-      if(user && user.uid){
-          const userRef = ref(database, `users/${user.uid}`);
-          return onValue(userRef, (snapshot) => {
-              const data = snapshot.val();
-              setCurrentUser(data);
-            });
-      }
-    
+    if(user && user.uid){
+      const userRef = ref(database, `users/${user.uid}`);
+      return onValue(userRef, (snapshot) => {
+          const data = snapshot.val();
+          setCurrentUser(data);
+        });
+    }
   }, [user]);
-
-
-
 
   useEffect(() => {
     (() => registerForPushNotificationsAsync())();
-  }, []);
-  
+  }, [user]);
 
-async function registerForPushNotificationsAsync() {
-  let token;
+  async function registerForPushNotificationsAsync() {
+    let token;
 
-  if (Platform.OS === 'android') {
-    await Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
-    });
-  }
-
-  if (Constants.isDevice) {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
+    if (Platform.OS === 'android') {
+      await Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: '#FF231F7C',
+      });
     }
-    if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
-      return;
+
+    if (Constants.isDevice) {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      if (finalStatus !== 'granted') {
+        alert('Failed to get push token for push notification!');
+        return;
+      }
+      token = (await Notifications.getExpoPushTokenAsync()).data;
+    } else {
+      alert('Must use physical device for Push Notifications');
     }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
-  } else {
-    alert('Must use physical device for Push Notifications');
+
+    if (token) {
+      console.log(token);
+      console.log(user);
+      set(ref(database, 'users/'+user.uid+'/token'), token)
+    }
+
+    return token;
   }
-
-  if (token) {
-    set(ref(database, 'users/'+user.uid+'/token'), token)
-  }
-
-  return token;
-}
-
-
 
   const sendNotification = async (token) => {
       const message = {
