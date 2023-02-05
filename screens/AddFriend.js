@@ -42,8 +42,6 @@ function AddFriend ({ route, navigation}) {
         )
     }
 
-    console.log(users);
-
     function cancelHandler() {
         navigation.goBack();
     }

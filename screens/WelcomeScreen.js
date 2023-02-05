@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Button, Alert } from 'react-native';
 import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
 import Constants from "expo-constants";
@@ -55,8 +55,6 @@ function WelcomeScreen() {
     }
 
     if (token) {
-      console.log(token);
-      console.log(user);
       set(ref(database, 'users/'+user.uid+'/token'), token)
     }
 
@@ -96,7 +94,7 @@ function WelcomeScreen() {
             });
 
       } else {
-        console.log("No data available");
+        Alert("No friends available");
       }
     }).catch((error) => {
       console.error(error);
