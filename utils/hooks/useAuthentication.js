@@ -8,7 +8,7 @@ export function useAuthentication() {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    const unsubscribeFromAuthStatuChanged = onAuthStateChanged(auth, (user) => {
+    const unsubscribeFromAuthStatusChanged = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
       } else {
@@ -16,7 +16,7 @@ export function useAuthentication() {
       }
     });
 
-    return unsubscribeFromAuthStatuChanged;
+    return unsubscribeFromAuthStatusChanged;
   }, []);
 
   return {

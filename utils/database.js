@@ -1,13 +1,13 @@
+import { Alert } from "react-native";
 import { ref, set } from "firebase/database";
 import { database } from '../config/firebaseConfig';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 
-export async function storeFriend(user){
-    const id = user.id || uuidv4();
-    set(ref(database, 'friends/'+id.toString()), user);
-    return id;
+export async function storeFriend(user, friend){
+    await set(ref(database, 'users/'+user.uid+'/friends/'+friend.id), friend);
 }
+
 
 export async function createUser(user){
     const id = user.id || uuidv4();
@@ -16,7 +16,7 @@ export async function createUser(user){
 }
 
 export function deleteFriend(id){
-    set(ref(database, 'friends/' + id), null)
+    set(ref(database, 'users/'+id.currentUser.toString()+'/friends'+id), null)
 }
 
 
